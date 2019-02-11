@@ -19,11 +19,8 @@ class ViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDele
     
     var selectedCurrencySymbol : String?
 
-    //Pre-setup IBOutlets
     @IBOutlet weak var bitcoinPriceLabel: UILabel!
     @IBOutlet weak var currencyPicker: UIPickerView!
-    
-
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -44,8 +41,6 @@ class ViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDele
         return currencyArray[row]
     }
     
-    //TODO: Place your 3 UIPickerView delegate methods here
-    
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         finalURL = baseURL + currencyArray[row]
         selectedCurrencySymbol = currencySymbolArray[row]
@@ -54,10 +49,6 @@ class ViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDele
         getBitcoinPrice(url: finalURL)
     }
     
-//    
-//    //MARK: - Networking
-//    /***************************************************************/
-//    
     func getBitcoinPrice(url: String) {
         
         Alamofire.request(url, method: .get)
@@ -74,14 +65,7 @@ class ViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDele
             }
 
     }
-//
-//    
-//    
-//    
-//    
-//    //MARK: - JSON Parsing
-//    /***************************************************************/
-//    
+
     func updateBitcoinData(json : JSON) {
         print(json)
         
@@ -89,10 +73,5 @@ class ViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDele
             bitcoinPriceLabel.text = selectedCurrencySymbol! + String(bitcoinPrice)
         }
     }
-
-
-
-
-
 }
 
